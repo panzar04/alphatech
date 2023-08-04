@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-    res.render('home', { title: 'Home'})
+    res.render('home', { title: 'Home - Alpha Tech'})
 });
 
 app.all('*', (req, res, next) => {
@@ -27,5 +27,5 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(3000, () => {
-    console.log('Port 3000 - Bez tytułu')
+    console.log('Port 3000 - Alpha Tech')
 });
