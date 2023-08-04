@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', async (req, res) => {
-    res.render('home', { title: 'Home - Alpha Tech'})
+    res.render('home', { title: 'Alpha Tech'})
 });
 
 app.all('*', (req, res, next) => {
