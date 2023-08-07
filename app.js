@@ -101,7 +101,13 @@ async (req, res) => {
         
 
         console.log(info.messageId); // Random ID generated after successful send (optional)
-
+      if (req.file) {
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+              console.error('Error deleting file:', err);
+            }
+          });
+      }
         // Send a response to the client indicating success
         res.status(200).send('Email sent successfully');
     } catch (error) {
