@@ -8,15 +8,41 @@
     position: absolute;
     justify-content: center;
     align-items: center;
-    margin: 20px; 
 }
-.block-1{
-    height: 350px;
-    width: 500px;
+.baner-img{
+    height: 20em;
+    object-fit: cover;
 }
 .in-block > h4{
     font-size: 2rem !important
 }
+.block-1{
+    height: min-content;
+}    
+.baner{
+        display: none;
+    }
+    .baner-xs{
+        display: block;
+    }
+@media (min-width: 520px) {
+    .baner{
+        display: block;
+    }
+    .block{
+    margin: 20px; 
+    }
+    .baner-xs{
+        display: none;
+    }
+}
+@media (min-width: 576px) {
+    .block-1{
+        height: 350px;
+        width: 500px;
+    }
+}
+
   .carousel-item img {
       object-fit:cover;
       height: 50em;
