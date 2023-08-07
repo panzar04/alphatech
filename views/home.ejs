@@ -11,25 +11,25 @@
 <div class="row nomargin mb-5">
     <div class="col"></div>
     <div class="col-11 col-md-7">
-        <form class="mb-5">
+        <form class="mb-5" action="/sendMessage" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Klient*</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="" required>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="mail[klient]" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput2" class="form-label">Numer telefonu*</label>
-                <input type="tel" class="form-control" id="exampleFormControlInput2" placeholder="" required>
+                <input type="tel" class="form-control" id="exampleFormControlInput2" name="mail[numer]" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput3" class="form-label">Adres e-mail</label>
-                <input type="email" class="form-control" id="exampleFormControlInput3" placeholder="">
+                <input type="email" class="form-control" id="exampleFormControlInput3" name="mail[mail]">
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Wiadomość*</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" required></textarea>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="mail[msg]" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlfile" class="form-label">Dodaj pliki</label>
+                <label for="exampleFormControlfile" class="form-label">Dodaj plik</label>
                 <input type="file" class="form-control" id="exampleFormControlfile">
             </div>
             <button type="submit" class="btn btn-outline-primary">Wyślij</button>
