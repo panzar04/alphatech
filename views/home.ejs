@@ -11,34 +11,34 @@
 <div class="row nomargin mb-5">
     <div class="col"></div>
     <div class="col-11 col-md-7">
-        <form class="mb-5" action="/sendMessage" method="POST" enctype="multipart/form-data">
+        <form class="mb-5" action="/" method="post" enctype="multipart/form-data" value="Send Email">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Klient*</label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" name="mail[klient]" required>
+                <label for="exampleFormControlInput1" class="form-label">Nadawca</label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" name="klient" required>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput2" class="form-label">Numer telefonu*</label>
-                <input type="tel" class="form-control" id="exampleFormControlInput2" name="mail[numer]" required>
+                <label for="exampleFormControlInput2" class="form-label">Numer telefonu</label>
+                <input type="tel" class="form-control" id="exampleFormControlInput2" name="numer" required>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput3" class="form-label">Adres e-mail</label>
-                <input type="email" class="form-control" id="exampleFormControlInput3" name="mail[mail]">
+                <input type="email" class="form-control" id="exampleFormControlInput3" name="mail" required>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label">Wiadomość*</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="mail[msg]" required></textarea>
+                <label for="exampleFormControlTextarea1" class="form-label">Wiadomość</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="5" name="msg" required></textarea>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlfile" class="form-label">Dodaj plik</label>
-                <input type="file" class="form-control" id="exampleFormControlfile">
+                <label for="fileToUpload" class="form-label">Dodaj plik (opcjonalnie)</label>
+                <input type="file" class="form-control"  name="fileToUpload" id="fileToUpload">
             </div>
-            <button type="submit" class="btn btn-outline-primary">Wyślij</button>
+            <button type="submit" id="emailsubmit" class="btn btn-outline-primary">Wyślij</button>
         </form>
     </div>
     <div class="col"></div>
 </div>
 
 
-
+<p></p>
 <!-- rwd the baner -->
 <!-- add gallery -->
