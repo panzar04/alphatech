@@ -5,6 +5,7 @@ const ExpressError = require('./ExpressError');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 const flash = require('connect-flash');
+const fs = require('fs');
 require('dotenv').config();
 const monthNames = ['stycznia', 'lutego', 'marca','kwietnia', 'maja', 'czerwca', 'lipca','sierpnia', 'września', 'października','listopada', 'grudnia']; 
 
@@ -100,7 +101,13 @@ async (req, res) => {
         
 
         console.log(info.messageId); // Random ID generated after successful send (optional)
-
+      if (req.file) {
+        fs.unlink(req.file.path, (err) => {
+            if (err) {
+              console.error('Error deleting file:', err);
+            }
+          });
+      }
         // Send a response to the client indicating success
         res.status(200).send('Email sent successfully');
     } catch (error) {
