@@ -21,7 +21,7 @@
                 <input type="tel" class="form-control" id="exampleFormControlInput2" name="numer" required>
             </div>
             <div class="mb-3">
-                <label for="exampleFormControlInput3" class="form-label">Adres e-mail</label>
+                <label for="exampleFormControlInput3" class="form-label">Adres e-mail (zostanie wysłana kopia)</label>
                 <input type="email" class="form-control" id="exampleFormControlInput3" name="mail" required>
             </div>
             <div class="mb-3">
@@ -33,12 +33,100 @@
                 <input type="file" class="form-control"  name="fileToUpload" id="fileToUpload">
             </div>
             <button type="submit" id="emailsubmit" class="btn btn-outline-primary">Wyślij</button>
+            
         </form>
     </div>
     <div class="col"></div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="msg-btn" tabindex="-1" aria-labelledby="msg-btnLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5 text-dark" id="msg-btnLabel">Mail został wysłany pomyślnie!</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-dark">
+              Odezwiemy się do ciebie niedługo!
+          </div>
+      </div>
+  </div>
+</div>
 
-<p></p>
+<div class="modal fade" id="msg-btn1" tabindex="-1" aria-labelledby="msg-btn1Label" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h1 class="modal-title fs-5 text-dark" id="msg-btn1Label">Przepraszamy, niestety wystąpił bład!</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-dark">
+              <div class="row nomargin mb-5">
+                <div class="col"></div>
+                <div class="col-11 col-md-10">
+              Czy chciał(a)byś spróbować ponownie? <br>
+                    <form class="mb-5" action="/" method="post" enctype="multipart/form-data" value="Send Email">
+                        <div class="mb-3">
+                            <label for="m1" class="form-label">Nadawca</label>
+                            <input type="text" class="form-control" id="m1" name="klient" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m2" class="form-label">Numer telefonu</label>
+                            <input type="tel" class="form-control" id="m2" name="numer" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m3" class="form-label">Adres e-mail (zostanie wysłana kopia)</label>
+                            <input type="email" class="form-control" id="m3" name="mail" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="m4" class="form-label">Wiadomość</label>
+                            <textarea class="form-control" id="m4" rows="5" name="msg" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="fileToUpload" class="form-label">Dodaj plik (jeśli wcześniej umieszczono, spróbuj ponownie)</label>
+                            <input type="file" class="form-control"  name="fileToUpload" id="fileToUpload">
+                        </div>
+                        <button type="submit" id="emailsubmit" class="btn btn-outline-primary">Wyślij</button>
+                        
+                    </form>
+            Alternatywnie spróbuj się z nami skontaktować tradycyjnie: kontakt@alphatech.com.pl<br>
+                </div>
+                <div class="col"></div>
+            </div>
+            
+          </div>
+      </div>
+  </div>
+</div>
+<script>
+  var urlParams = new URLSearchParams(window.location.search);
+  var fromButton = urlParams.get('wyslano');
+
+  if (fromButton === 'true') {
+      window.addEventListener('DOMContentLoaded', function () {
+          var myModal = new bootstrap.Modal(document.getElementById('msg-btn'));
+          myModal.show();
+      });
+  } else if (fromButton === 'false'){
+    window.addEventListener('DOMContentLoaded', function () {
+          var myModal1 = new bootstrap.Modal(document.getElementById('msg-btn1'));
+          myModal1.show();  
+          var m1 = urlParams.get('klient');
+          var m2 = urlParams.get('numer');
+          var m3 = urlParams.get('mail');
+          var m4 = urlParams.get('msg');
+          document.getElementById('m1').value = `${m1}`;
+          document.getElementById('m2').value = `${m2}`;
+          document.getElementById('m3').value = `${m3}`;
+          document.getElementById('m4').value = `${m4}`;
+      });
+  }
+
+
+
+
+
+</script>
 <!-- rwd the baner -->
 <!-- add gallery -->

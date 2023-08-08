@@ -9,13 +9,7 @@ const fs = require('fs');
 require('dotenv').config();
 const monthNames = ['stycznia', 'lutego', 'marca','kwietnia', 'maja', 'czerwca', 'lipca','sierpnia', 'września', 'października','listopada', 'grudnia']; 
 
-// const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: process.env.EMAIL_USER,
-//       pass: process.env.EMAIL_PASSWORD
-//     }
-//   });
+
 
 const app = express();
 const upload = multer({ dest: 'uploads/' });
@@ -26,6 +20,13 @@ app.set('views', path.join(__dirname, 'views'))
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+// app.use(flash());
+// app.use((req, res, next) => {
+//     //console.log(req.session)
+//     res.locals.success = req.flash('success');
+//     res.locals.error = req.flash('error');
+//     next();
+// })
 
 app.get('/', async (req, res) => {
     res.render('home', { title: 'Alpha Tech - Gorzów Wielkopolski'})
@@ -56,17 +57,16 @@ async (req, res) => {
             }
         });
 
-        const pelnaData = `wysłana ${day} ${month} ${year} o ${hour}:${minute}`;
+        const pelnaData = `wysłana ${day} ${month} ${year} o ${hour}:${minute < 10 ? '0' : ''}${minute}`;
         const mailSubject = `Nowa wiadomość ${klient} ${pelnaData}!`;
 
         const mailFrom = "Nowa wiadomość [Alpha Tech] <alpha.tech.firma@gmail.com>";
-        const mailTo = "panzar@wp.pl";
+        const mailTo = `dawid.dziuba04@gmail.com, ${mail}`;
 
         const mailText = `Nowa wiadomość wysłana przez stronę alphatech.com.pl; Data: ${day} ${month} ${year} o ${hour}:${minute}. Nadawca: ${klient}. Wiadomość: ${msg}. Numer do nadawcy: ${numer}; Adres email nadawcy: ${mail}`;
         let mailHtml = `
-        <p style="font-size: 18px;><b>Nowa wiadomość wysłana przez stronę alphatech.com.pl!</b></p>
-        <br>
-        <p style="font-weight: lighter;">Wysłano przez ${klient} Kiedy: ${day} ${month} ${year} o ${hour}:${minute}.</p>
+        <p style="font-size: 18px;><strong>Nowa wiadomość wysłana ze strony alphatech.com.pl!</strong></p>
+        <p style="font-weight: lighter;">Wysłano przez ${klient}.</p><br><p>Kiedy: ${day} ${month} ${year} o ${hour}:${minute < 10 ? '0' : ''}${minute}.</p>
         <br>
         <p>"${msg}"</p>
         <br>
@@ -101,6 +101,7 @@ async (req, res) => {
         
 
         console.log(info.messageId); // Random ID generated after successful send (optional)
+        console.log("Email sent successfully");
       if (req.file) {
         fs.unlink(req.file.path, (err) => {
             if (err) {
@@ -109,10 +110,12 @@ async (req, res) => {
           });
       }
         // Send a response to the client indicating success
-        res.status(200).send('Email sent successfully');
+        res.redirect(303, '?wyslano=true');
     } catch (error) {
+      
+        const { klient, msg, numer, mail } = req.body;
         console.error(error);
-        res.status(500).send('An error occurred while sending the email');
+        res.redirect(500, `?wyslano=false&klient=${klient}&msg=${msg}&numer=${numer}&mail=${mail}`);
     }
 });
 // app.get('/sendMessage', async (req, res) => {
