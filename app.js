@@ -130,7 +130,7 @@ app.use((err, req, res, next) => {
 
 
 app.all('*', (req, res, next) => {
-    next(new ExpressError('Nie możemy znaleźć takiej strony!', 404))
+  res.redirect('/')
 });
 
 app.listen(3000, () => {
