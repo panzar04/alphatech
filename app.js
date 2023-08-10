@@ -61,7 +61,7 @@ async (req, res) => {
         const mailSubject = `Nowa wiadomość ${klient} ${pelnaData}!`;
 
         const mailFrom = "Nowa wiadomość [Alpha Tech] <alpha.tech.firma@gmail.com>";
-        const mailTo = `dawid.dziuba04@gmail.com, ${mail}`;
+        const mailTo = `kontakt@alphatech.com.pl, ${mail}`;
 
         const mailText = `Nowa wiadomość wysłana przez stronę alphatech.com.pl; Data: ${day} ${month} ${year} o ${hour}:${minute}. Nadawca: ${klient}. Wiadomość: ${msg}. Numer do nadawcy: ${numer}; Adres email nadawcy: ${mail}`;
         let mailHtml = `
